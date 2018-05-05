@@ -13,7 +13,9 @@ export class Fitness {
 }
 
 export class User {
-    Name:string;
+    Name: string;
+    MyActivities: string[];
+    MyFinishedActivities: string[];
 }
 
 export class Activity {

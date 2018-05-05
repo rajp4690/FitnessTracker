@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Fitness } from '../models/Fitness';
+import { Fitness, User } from '../models/Fitness';
+import { Http } from "@angular/http";
+import { Router } from '@angular/router';
+import { FitnessService } from '../services/fitness.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +12,20 @@ import { Fitness } from '../models/Fitness';
 export class HomeComponent implements OnInit {
 
   Model = new Fitness();
+  Me: User;
 
-  constructor() { }
+  private _api = "http://localhost:8080/"
+
+  constructor(
+    private http: Http,
+    private _Fitness: FitnessService,
+    private _Router: Router
+  ) {
+    this.Me = _Fitness.Me;
+    if(!this.Me) {
+      _Router.navigate(['/login']);
+    }
+   }
 
   ngOnInit() {
   }
@@ -36,3 +51,5 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+
