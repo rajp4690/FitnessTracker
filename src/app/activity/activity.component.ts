@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Fitness } from '../models/Fitness'
+import { Fitness, User } from '../models/Fitness'
 
 @Component({
   selector: 'app-activity',
@@ -9,8 +9,11 @@ import { Fitness } from '../models/Fitness'
 export class ActivityComponent implements OnInit {
 
   Model = new Fitness();
-
-  constructor() { }
+  Me = new User();
+  
+  constructor() { 
+    this.Me.Name = 'Raj';
+   }
 
   ngOnInit() {
   }
