@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   Model = new Fitness();
   Me: User;
 
-  private _api = "http://localhost:8080/"
+  private _api = "http://localhost:8080/home"
 
   constructor(
     private http: Http,
@@ -25,6 +25,12 @@ export class HomeComponent implements OnInit {
     if(!this.Me) {
       _Router.navigate(['/login']);
     }
+    this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
+      .subscribe(data => {
+          console.log(data.json());
+          this.Me = data.json();
+        }
+      );
    }
 
   ngOnInit() {
@@ -32,8 +38,12 @@ export class HomeComponent implements OnInit {
 
   submitActivity(e: MouseEvent, text: string) {
     e.preventDefault();
-
-    this.Model.Activities.push(text);
+    this.http.post(this._api + "/activities", { UserId: this.Me.UserId, Activity: text })
+      .subscribe(data => {
+        if(data.json().success) {
+          this.Me.MyActivities.push(text);
+        }
+      });
 
   }
 

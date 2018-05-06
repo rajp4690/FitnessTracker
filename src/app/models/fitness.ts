@@ -13,6 +13,7 @@ export class Fitness {
 }
 
 export class User {
+    UserId: string;
     Name: string;
     MyActivities: string[];
     MyFinishedActivities: string[];

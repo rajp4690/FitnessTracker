@@ -11,8 +11,8 @@ export class FitnessService {
 
   constructor(private _http: Http, private _Router: Router) { }
 
-  oAuthLogin(name: string, token: string) {
-    this.Me = { Name: name, MyActivities: [], MyFinishedActivities: []};
+  oAuthLogin(id: string, name: string, token: string) {
+    this.Me = { UserId: id, Name: name, MyActivities: [], MyFinishedActivities: []};
     this.token = token;
     this._Router.navigate(['/home']);
   }

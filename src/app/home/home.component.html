@@ -16,7 +16,7 @@
 
       <ul class="list-group mt-3">
 
-        <li *ngFor="let activity of Model.Activities" class="list-group-item d-flex justify-content-between align-items-center">
+        <li *ngFor="let activity of Me.MyActivities" class="list-group-item d-flex justify-content-between align-items-center">
           {{activity}}
           <button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">-</button>
         </li>

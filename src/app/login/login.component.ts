@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         }
       ]
     }).then((credentials: any) => {
-      this._Fitness.oAuthLogin(credentials.displayName, credentials.idToken);
+      this._Fitness.oAuthLogin(credentials.id, credentials.displayName, credentials.idToken);
       console.log(credentials);
     });
   }
