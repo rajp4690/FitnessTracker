@@ -8,17 +8,19 @@
           <button class="btn btn-primary" type="button">Search</button>
         </div>
       </div>
-      
+
 
       <input #activity type="text" class="form-control" placeholder="Activity">
       <button type="button" (click)="submitActivity($event, activity.value)" class="btn btn-block btn-success mt-3">Add</button>
 
 
       <ul class="list-group mt-3">
-
-        <li *ngFor="let activity of Me.MyActivities" class="list-group-item d-flex justify-content-between align-items-center">
-          {{activity}}
-          <button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">-</button>
+        <li *ngFor="let activity of Me.MyActivities" class="list-group-item align-items-center">
+            <div class="d-flex">
+                <div class="mr-auto p-2">{{activity}}</div>
+                <div class="p-2"><button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button></div>
+                <div class="p-2"><button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button></div>
+            </div> 
         </li>
       </ul>
     </div>
@@ -40,19 +42,19 @@
   <div class="col">
     <div class="card">
       <div class="card-header">
-        <b>New DLC</b>
-        <button type="button" class="close" data-dismiss="card" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <b>Daily Health News</b>
+        <a href="https://newsapi.org" target="_blank" style="float: right; font-size: 0.7em;">Powered by NewsApi.org</a>
       </div>
-      <img class="card-img-top" src="http://www.androidguys.com/wp-content/uploads/2014/02/minimal_modern19.png" alt="Card image cap">
+      <img *ngIf="Model.News.urlToImage" class="card-img-top" [src]="Model.News.urlToImage" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Supersonic Fury</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">{{Model.News.title}}</h5>
+        <p class="card-text">{{Model.News.description}}</p>
+        <a [href]="Model.News.url" target="_blank" class="btn btn-primary">Visit</a>
+        <button (click)="nextNews()" class="btn btn-success">Next</button>
       </div>
     </div>
   </div>
+
   <!-- <div class="col">
     <div class="card">
       <div class="card-header">

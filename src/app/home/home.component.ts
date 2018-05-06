@@ -27,28 +27,39 @@ export class HomeComponent implements OnInit {
     }
     this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
       .subscribe(data => {
-          console.log(data.json());
           this.Me = data.json();
         }
       );
+
+      setInterval(() => this.refresh(), 1000);
    }
 
   ngOnInit() {
   }
 
+  refresh() {
+    this.http.get(this._api + "/state").subscribe(data => this.Model = data.json());
+  }
+
   submitActivity(e: MouseEvent, text: string) {
     e.preventDefault();
-    this.http.post(this._api + "/activities", { UserId: this.Me.UserId, Activity: text })
+    this.http.post(this._api + "/activities", { UserId: this.Me.UserId, Activity: text, Action: "submit"})
       .subscribe(data => {
         if(data.json().success) {
           this.Me.MyActivities.push(text);
         }
-      });
+    });
 
   }
 
   removeActivity(text: string) {
-    this.Model.Activities.splice(this.Model.Activities.indexOf(text), 1);
+    this.http.post(this._api + "/activities", { UserId: this.Me.UserId, Activity: text, Action: "remove"})
+      .subscribe(data => {
+        if(data.json().success) {
+          this.Me.MyActivities.splice(this.Me.MyActivities.indexOf(text), 1);
+        }
+    });
+    
   }
 
   searchActivity(text: string, subtext: string) {
@@ -58,6 +69,20 @@ export class HomeComponent implements OnInit {
     else {
       return text.indexOf(subtext) > -1;
     }
+  }
+
+  finishActivity(text: string) {
+    this.http.post(this._api + "/activities", { UserId: this.Me.UserId, Activity: text, Action: "finish"})
+      .subscribe(data => {
+        if(data.json().success) {
+          this.Me.MyActivities.splice(this.Me.MyActivities.indexOf(text), 1);
+          this.Me.MyFinishedActivities.push(text);
+        }
+    });
+  }
+
+  nextNews() {
+    this.http.get(this._api + '/news').subscribe();
   }
 
 }

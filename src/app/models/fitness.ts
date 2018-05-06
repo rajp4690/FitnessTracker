@@ -1,15 +1,13 @@
 
 export class Fitness {
-    Activities:string[] = [
-        "Excercise for 45 minutes",
-        "Drink 1 gallon water per day",
-        "Play table-tennis for 30 minutes"
-    ];
-    Users:User[] = [];
-    Finished:Activity[] = [
-        new Activity('Walk 2 miles.', 'Raj', true),
-        new Activity('Meditation for 20 minutes', 'Diku', true)
-    ];
+    News: {
+        title: string,
+        description: string,
+        url: string,
+        urlToImage: string 
+    };
+    Users: User[] = [];
+    
 }
 
 export class User {
