@@ -15,11 +15,11 @@
 
 
       <ul class="list-group mt-3">
-        <li *ngFor="let activity of Me.MyActivities" class="list-group-item align-items-center">
+        <li *ngFor="let activity of Me.MyActivities" class="list-group-item">
             <div class="d-flex">
-                <div class="mr-auto p-2">{{activity}}</div>
-                <div class="p-2"><button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button></div>
-                <div class="p-2"><button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button></div>
+                <div class="mr-auto">{{activity}}</div>
+                <div class="px-3"><button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button></div>
+                <div class="pl-1"><button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button></div>
             </div> 
         </li>
       </ul>
@@ -40,12 +40,12 @@
     </div> -->
   </div>
   <div class="col">
-    <div class="card">
+    <div *ngIf="Model.News" class="card">
       <div class="card-header">
         <b>Daily Health News</b>
         <a href="https://newsapi.org" target="_blank" style="float: right; font-size: 0.7em;">Powered by NewsApi.org</a>
       </div>
-      <img *ngIf="Model.News.urlToImage" class="card-img-top" [src]="Model.News.urlToImage" alt="Card image cap">
+      <img class="card-img-top" [src]="Model.News.urlToImage" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{Model.News.title}}</h5>
         <p class="card-text">{{Model.News.description}}</p>

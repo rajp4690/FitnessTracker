@@ -14,7 +14,7 @@ export class ActivityComponent implements OnInit {
   Model = new Fitness();
   Me: User;
 
-  private _api = "http://localhost:8080/home"
+  private _api = "http://localhost:8080/home";
 
   constructor(
     private http: Http,
@@ -34,6 +34,10 @@ export class ActivityComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  progress() {
+    return ((this.Me.MyFinishedActivities.length * 100) / (this.Me.MyActivities.length + this.Me.MyFinishedActivities.length)).toFixed(2);
   }
 
 }

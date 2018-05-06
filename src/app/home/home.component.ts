@@ -25,13 +25,15 @@ export class HomeComponent implements OnInit {
     if(!this.Me) {
       _Router.navigate(['/login']);
     }
-    this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
+    else {
+      this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
       .subscribe(data => {
           this.Me = data.json();
         }
       );
 
       setInterval(() => this.refresh(), 1000);
+    }
    }
 
   ngOnInit() {
