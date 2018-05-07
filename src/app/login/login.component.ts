@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       supportedIdTokenProviders: [
         {
           uri: "https://accounts.google.com",
-          clientId: "425516493203-pkhu17llakolpgni1qbrvfkuutugeukn.apps.googleusercontent.com"
+          clientId: "597094911057-8bq5rtf592jemptbthmn39h900qb87rn.apps.googleusercontent.com"
         }
       ]
     }).then((credentials: any) => {

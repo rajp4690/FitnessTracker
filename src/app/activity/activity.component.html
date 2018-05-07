@@ -16,8 +16,8 @@
   </div> -->
 
 <div class="row">
-  <div class="col-md-8">
-      <p class="display-4">Progress: {{progress()}}%</p>
+  <div class="col-md-7 my-2">
+    <p class="display-4">Progress: {{progress()}}%</p>
     <div class="progress">
       <div class="progress-bar" role="progressbar" [style.width.%]="progress()" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
@@ -30,11 +30,46 @@
         </p>
       </a>
     </div>
-
   </div>
 
+  <div class="col-md-5 my-2">
+    <div class="card bg-warning">
+      <div class="display-4 card-header text-white">Friends</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let user of Model.Users" class="list-group-item">
+          <div class="d-flex">
+            <div class="mr-auto">{{user.Name}}</div>
+            <div class="pl-1">
+              <button (click)="checkUser(user.UserId)" class="btn btn-outline-dark btn-sm" type="button">Check</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-  <!-- <div class="col-md-4">
+<div *ngIf="chosenUser" class="row">
+  <p class="display-4 col-12 mt-4">{{chosenUser.Name}}'s Activities</p>
+  <div class="col-md-6 my-2">
+    <div class="card bg-info">
+      <div class="card-header lead text-white">Current Activites</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let activity of chosenUser.MyActivities" class="list-group-item">{{activity}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 my-2">
+    <div class="card bg-success">
+      <div class="card-header lead text-white">Completed Activites</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let activity of chosenUser.MyFinishedActivities" class="list-group-item">{{activity}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-md-4">
     <div class="card">
       <div class="card-header">My Quotes</div>
       <ul class="list-group list-group-flush">
@@ -44,15 +79,3 @@
       </ul>
     </div>
   </div> -->
-
-  <div class="col-md-6 mt-4">
-    <div class="card bg-warning">
-      <div class="card-header text-white">Tasks</div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
-  </div>
-</div>

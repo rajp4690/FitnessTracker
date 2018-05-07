@@ -30,9 +30,10 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
           this.Me = data.json();
         }
-      );
-
-      setInterval(() => this.refresh(), 1000);
+      ); 
+      
+      this.nextNews();
+      setInterval(() => this.refresh(), 2000);
     }
    }
 

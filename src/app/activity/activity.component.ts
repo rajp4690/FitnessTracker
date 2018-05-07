@@ -13,6 +13,7 @@ export class ActivityComponent implements OnInit {
 
   Model = new Fitness();
   Me: User;
+  chosenUser: User;
 
   private _api = "http://localhost:8080/home";
 
@@ -25,15 +26,26 @@ export class ActivityComponent implements OnInit {
     if(!this.Me) {
       _Router.navigate(['/login']);
     }
-    this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
+    else {
+      this.http.get(this._api + "/activities", { params: { userId: this.Me.UserId, name: this.Me.Name } })
       .subscribe(data => {
-          console.log(data.json());
           this.Me = data.json();
         }
       );
+    }
+    this.refresh();
+    setInterval(() => this.refresh(), 5000);
    }
 
   ngOnInit() {
+  }
+
+  checkUser(userId: string) {
+    this.chosenUser = this.Model.Users.find(x => x.UserId === userId);
+  }
+
+  refresh() {
+    this.http.get(this._api + "/state").subscribe(data => this.Model = data.json());
   }
 
   progress() {

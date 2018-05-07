@@ -1,45 +1,56 @@
 <div class="row">
-  <div class="col">
+  <div class="col-md-6 mb-4">
     <div class="container">
 
-      <div class="input-group mb-3 mt-3">
+      <!-- <div class="input-group mb-3 mt-3">
         <input #search type="text" class="form-control" placeholder="Search for activity" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">Search</button>
         </div>
-      </div>
+      </div> -->
 
-
+      <!-- <p class="display-4">Add New Activity</p>
       <input #activity type="text" class="form-control" placeholder="Activity">
-      <button type="button" (click)="submitActivity($event, activity.value)" class="btn btn-block btn-success mt-3">Add</button>
+      <button type="button" (click)="submitActivity($event, activity.value)" class="btn btn-block btn-success mt-3">Add</button> -->
 
-
-      <ul class="list-group mt-3">
-        <li *ngFor="let activity of Me.MyActivities" class="list-group-item">
+      <div class="card bg-light">
+        <div class="display-4 card-header">
+          <div class="mb-4 text-center">MY ACITVITY</div> 
+          <input #activity type="text" class="form-control" placeholder="Activity">
+          <button type="button" (click)="submitActivity($event, activity.value)" class="btn btn-block btn-info mt-3">Add</button>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let activity of Me.MyActivities" class="list-group-item">
             <div class="d-flex">
-                <div class="mr-auto">{{activity}}</div>
-                <div class="px-3"><button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button></div>
-                <div class="pl-1"><button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button></div>
-            </div> 
+              <div class="mr-auto">{{activity}}</div>
+              <div class="px-3">
+                <button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button>
+              </div>
+              <div class="pl-1">
+                <button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <ul class="list-group mt-3">
+        <li *ngFor="let activity of Me.MyActivities" class="list-group-item">
+          <div class="d-flex">
+            <div class="mr-auto">{{activity}}</div>
+            <div class="px-3">
+              <button (click)="finishActivity(activity)" class="btn btn-success btn-sm" type="button">&#10003;</button>
+            </div>
+            <div class="pl-1">
+              <button (click)="removeActivity(activity)" class="btn btn-danger btn-sm" type="button">&#10007;</button>
+            </div>
+          </div>
         </li>
-      </ul>
+      </ul> -->
     </div>
-    <!-- <div class="card">
-      <div class="card-header">
-        <b>New DLC</b>
-        <button type="button" class="close" data-dismiss="card" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <img class="card-img-top" src="http://www.guoguiyan.com/data/out/128/68488912-minimal-wallpapers.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Supersonic Fury</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div> -->
   </div>
-  <div class="col">
+
+  <div class="col-md-6">
     <div *ngIf="Model.News" class="card">
       <div class="card-header">
         <b>Daily Health News</b>
@@ -54,22 +65,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="col">
-    <div class="card">
-      <div class="card-header">
-        <b>New DLC</b>
-        <button type="button" class="close" data-dismiss="card" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <img class="card-img-top" src="https://free4kwallpaper.com/wp-content/uploads/2016/01/Cube-Distraction-Abstract-4K-Wallpapers-1680x1050.jpg"
-        alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Supersonic Fury</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div> -->
 </div>

@@ -15,18 +15,18 @@ axios.get('https://newsapi.org/v2/top-headlines?country=us&category=health&apiKe
         }
     });
 
-var newsIndex = 0;
+var newsIndex = -1;
 
 function Fitness() {
     this.Users = [];
-    this.News = newsArray[0];
+    this.News = {};
 
     this.getActivities = (userId, name) => {
         if(this.Users.some(x => x.UserId === userId)) {
 
         }
         else {
-            this.Users.push({ UserId: userId, Name: name, MyActivities: ["Current", "Get this done"], MyFinishedActivities: ["Finished"] });
+            this.Users.push({ UserId: userId, Name: name, MyActivities: ["Test Acitvity"], MyFinishedActivities: [] });
         }
         return this.Users.find(x => x.UserId === userId);
     };

@@ -16,14 +16,3 @@ export class User {
     MyActivities: string[];
     MyFinishedActivities: string[];
 }
-
-export class Activity {
-    Text:string;
-    UserName:string;
-    Completed:boolean = false;
-    constructor(text:string, userName:string, completed:boolean) {
-        this.Text = text;
-        this.UserName = userName;
-        this.Completed = completed;
-    }
-}
