@@ -51,7 +51,7 @@
   </div>
 
   <div class="col-md-6">
-    <div *ngIf="Model.News" class="card">
+    <div *ngIf="Model.News; else loading"class="card">
       <div class="card-header">
         <b>Daily Health News</b>
         <a href="https://newsapi.org" target="_blank" style="float: right; font-size: 0.7em;">Powered by NewsApi.org</a>
@@ -64,5 +64,8 @@
         <button (click)="nextNews()" class="btn btn-success">Next</button>
       </div>
     </div>
+    <ng-template #loading>
+        <div class="loader"></div>
+    </ng-template>
   </div>
 </div>
