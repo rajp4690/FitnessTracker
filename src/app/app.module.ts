@@ -10,6 +10,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { FitnessService } from './services/fitness.service';
+import { MessageService } from './services/message.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { FitnessService } from './services/fitness.service';
       {path: '', redirectTo: '/home', pathMatch: 'full'}
     ])
   ],
-  providers: [FitnessService],
+  providers: [FitnessService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6 mb-4">
+  <div class="col-md-6 mt-4">
     <div class="container">
 
       <!-- <div class="input-group mb-3 mt-3">
@@ -15,7 +15,7 @@
 
       <div class="card bg-light">
         <div class="display-4 card-header">
-          <div class="mb-4 text-center">MY ACITVITY</div> 
+          <div class="mb-4 text-center">MY ACITVITIES</div> 
           <input #activity type="text" class="form-control" placeholder="Activity">
           <button type="button" (click)="submitActivity($event, activity.value)" class="btn btn-block btn-info mt-3">Add</button>
         </div>
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 mt-4">
     <div *ngIf="Model.News; else loading"class="card">
       <div class="card-header">
         <b>Daily Health News</b>

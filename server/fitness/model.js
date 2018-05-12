@@ -6,12 +6,14 @@ axios.get('https://newsapi.org/v2/top-headlines?country=us&category=health&apiKe
     .then(response => {
         let narray = response.data.articles;
         for (let i = 0; i < narray.length; i++) {
-            newsArray.push({ 
-                title: narray[i].title,
-                description: narray[i].description,
-                url: narray[i].url,
-                urlToImage: narray[i].urlToImage
-            });
+            if(narray[i].urlToImage != null) {
+                newsArray.push({ 
+                    title: narray[i].title,
+                    description: narray[i].description,
+                    url: narray[i].url,
+                    urlToImage: narray[i].urlToImage
+                });
+            }
         }
     });
 

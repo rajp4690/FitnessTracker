@@ -3,6 +3,7 @@ import { Fitness, User } from '../models/Fitness';
 import { Http } from "@angular/http";
 import { Router } from '@angular/router';
 import { FitnessService } from '../services/fitness.service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private http: Http,
     private _Fitness: FitnessService,
+    private _Messages: MessageService,
     private _Router: Router
   ) {
     this.Me = _Fitness.Me;
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
           this.Me = data.json();
         }
       ); 
-      
+      _Messages.Messages.push({ Text: 'Welcome ' + this.Me.Name, Type: 'success' });
       this.nextNews();
       setInterval(() => this.refresh(), 2000);
     }
