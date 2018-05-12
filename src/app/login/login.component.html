@@ -1,14 +1,38 @@
-<div class="row justify-content-center">
-  <div class="col-md-6 mt-4">
-    <div class="card">
-      <div class="card-header bg-primary text-white">Login</div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-block btn-outline-danger" (click)="googleLogin()">Login with Google</button>
-          </div>
-        </div>
+<div class="display-3 mt-4 text-center">
+  Fitness Tracker</div>
+<div class="row justify-content-center mt-4">
+  <div *ngIf="!show" class="col-5">
+    <form>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input #email type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input #password type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" (click)="login(email.value, password.value)">Sign In</button>
+      <button type="button" class="btn btn-danger btn-block" (click)="googleLogin()">Sign In With Google</button>
+      <div class="text-muted text-center mt-2">Don't have an account? <a [routerLink]="" (click)="show =!show">Sign Up.</a> </div>
+    </form>
   </div>
+  <div *ngIf="show" class="col-5">
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input #name type="text" class="form-control" name="name" placeholder="Your Name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input #email type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input #password type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-success btn-block" (click)="register(name.value, email.value, password.value)">Sign Up</button>
+        <div class="text-muted text-center mt-2">Alredy have an account? <a [routerLink]="" (click)="show =!show">Sign In.</a> </div>
+      </form>
+    </div>
 </div>

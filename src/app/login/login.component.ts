@@ -10,6 +10,8 @@ declare var googleyolo: any;
 })
 export class LoginComponent implements OnInit {
 
+  show = false;
+
   constructor(private _Fitness: FitnessService) {
     
    }
@@ -32,6 +34,14 @@ export class LoginComponent implements OnInit {
       this._Fitness.oAuthLogin(credentials.id, credentials.displayName, credentials.idToken);
       console.log(credentials);
     });
+  }
+
+  login(email:string, password: string) {
+    this._Fitness.login(email, password);
+  }
+
+  register(name: string, email: string, password: string) {
+    this._Fitness.register(name, email, password);
   }
 
 }

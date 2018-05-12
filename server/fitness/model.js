@@ -18,9 +18,11 @@ axios.get('https://newsapi.org/v2/top-headlines?country=us&category=health&apiKe
     });
 
 var newsIndex = -1;
+var usersInfo = [];
 
 function Fitness() {
     this.Users = [];
+
     this.News = {};
 
     this.getActivities = (userId, name) => {
@@ -51,6 +53,24 @@ function Fitness() {
         this.News = newsArray[newsIndex = (newsIndex + 1) % newsArray.length];
     };
     
+    this.login = (email, password) => {
+        if(usersInfo.some(x => x.Email === email)) {
+            let user = usersInfo.find(x => x.Email === email);
+            console.log(user);
+            if(user.Password === password) {
+                return { username: user.Name };
+            }
+        }
+        return { username: false };
+    };
+
+    this.register = (name, email, password) => {
+        console.log(name, email, password);
+        usersInfo.push({ Name: name, Email: email, Password: password });
+        return { success: true };
+    };
+    
 }
+
 
 module.exports = Fitness;

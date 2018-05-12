@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Fitness, User } from '../models/Fitness'
 import { Http } from '@angular/http';
 import { FitnessService } from '../services/fitness.service';
@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.css']
 })
-export class ActivityComponent implements OnInit {
+export class ActivityComponent implements OnInit, OnDestroy {
 
   Model = new Fitness();
   Me: User;
   chosenUser: User;
 
   private _api = "http://localhost:8080/home";
+  public interval: any;
 
   constructor(
     private http: Http,
@@ -34,10 +35,14 @@ export class ActivityComponent implements OnInit {
       );
     }
     this.refresh();
-    setInterval(() => this.refresh(), 5000);
+    this.interval = setInterval(() => this.refresh(), 1000);
    }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
   checkUser(userId: string) {

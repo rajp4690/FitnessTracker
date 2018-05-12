@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Fitness, User } from '../models/Fitness';
 import { Http } from "@angular/http";
 import { Router } from '@angular/router';
@@ -10,12 +10,13 @@ import { MessageService } from '../services/message.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   Model = new Fitness();
   Me: User;
 
-  private _api = "http://localhost:8080/home"
+  private _api = "http://localhost:8080/home";
+  public interval: any;
 
   constructor(
     private http: Http,
@@ -33,13 +34,19 @@ export class HomeComponent implements OnInit {
           this.Me = data.json();
         }
       ); 
-      _Messages.Messages.push({ Text: 'Welcome ' + this.Me.Name, Type: 'success' });
+      if(!_Messages.Messages.some(x => x.Text === 'Welcome ' + this.Me.Name)) { 
+        _Messages.Messages.push({ Text: 'Welcome ' + this.Me.Name, Type: 'success' });
+      }
       this.nextNews();
-      setInterval(() => this.refresh(), 2000);
+      this.interval = setInterval(() => this.refresh(), 1000);
     }
    }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
   refresh() {
