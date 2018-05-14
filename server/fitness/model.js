@@ -1,4 +1,6 @@
 var axios = require('axios');
+var { Observable } = require('rxjs/Observable');
+var { map, filter, switchMap } = require('rxjs/operators');
 
 var newsArray = [];
 
@@ -70,6 +72,14 @@ function Fitness() {
         return { success: true };
     };
     
+    this.searchUser = (text) => {
+        // console.log(text);
+        // return this.Users.filter(v => v.Name.toLowerCase().indexOf(text.toLowerCase()) > -1).slice(0, 10);
+        
+        //Here I wanted to get string from observable to filter from array and
+        // wanted to return that array.
+        return this.Users.filter(v => v.Name.toLowerCase().indexOf(text.toLowerCase()) > -1).slice(0, 10);
+    };
 }
 
 

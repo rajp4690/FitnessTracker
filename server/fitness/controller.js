@@ -9,6 +9,7 @@ module.exports = app
     .get('/news', (req, res) => res.send(fitness.nextNews()))
     .get('/activities', (req, res) => res.send(fitness.getActivities(req.query.userId, req.query.name)))
     .get('/state', (req, res) => res.send(fitness))
+    .get('/search', (req, res) => res.send(fitness.searchUser(req.query.Text)))
     .post('/activities', (req, res) => {
         try {
             fitness.modifyActivity(req.body.UserId, req.body.Activity, req.body.Action);

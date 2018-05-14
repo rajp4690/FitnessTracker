@@ -3,6 +3,8 @@ import { Fitness, User } from '../models/Fitness'
 import { Http } from '@angular/http';
 import { FitnessService } from '../services/fitness.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import {debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-activity',
@@ -56,5 +58,12 @@ export class ActivityComponent implements OnInit, OnDestroy {
   progress() {
     return ((this.Me.MyFinishedActivities.length * 100) / (this.Me.MyActivities.length + this.Me.MyFinishedActivities.length)).toFixed(2);
   }
+
+  search = (text: Observable<string>) => 
+    text.pipe(
+      map(x =>
+        //Return array of filtered  user from server
+        this.http.get(this._api + "/search", { params: { Text: text } }).subscribe(data => data.json())
+    ));
 
 }
